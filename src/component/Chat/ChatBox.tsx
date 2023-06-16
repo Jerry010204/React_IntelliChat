@@ -17,10 +17,11 @@ interface chat2 {
   role: string;
   content: string;
   createdAt: string;
+  fake: boolean;
 }
 function ChatBox() {
   const [input, setInput] = useState<string>("");
-  const [imageUrl, setImageUrl] = useState<String>("");
+  const [imageUrl, setImageUrl] = useState<string>("");
   const [onType, setOnType] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [dots, setDots] = useState(".");
@@ -78,6 +79,7 @@ function ChatBox() {
           role: "user",
           content: input,
           createdAt: current.getTime().toString(),
+          fake: false,
         },
       ]);
       setInput("");
@@ -93,71 +95,75 @@ function ChatBox() {
       body: JSON.stringify(apiRequestBody),
     });
 
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder("utf-8");
-    let textingContent = "";
+    if (response.body) {
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let textingContent = "";
 
-    setChatLog((prevChatLog) => [
-      ...prevChatLog,
-      {
-        role: "assistant",
-        content: "",
-        createdAt: "",
-      },
-    ]);
+      setChatLog((prevChatLog) => [
+        ...prevChatLog,
+        {
+          role: "assistant",
+          content: "",
+          createdAt: "",
+          fake: false,
+        },
+      ]);
 
-    setLoading(false);
-    while (true) {
-      const chunk = await reader.read();
-      const { done, value } = chunk;
-      if (done) {
-        break;
-      }
-      const decodedChunk = decoder.decode(value);
-      const lines = decodedChunk.split("\n");
-      const parsedLines = lines
-        .map((line) => line.replace(/^data: /, "").trim())
-        .filter((line) => line !== "" && line !== "[DONE]")
-        .map((line) => JSON.parse(line));
+      setLoading(false);
+      while (true) {
+        const chunk = await reader.read();
+        const { done, value } = chunk;
+        if (done) {
+          break;
+        }
+        const decodedChunk = decoder.decode(value);
+        const lines = decodedChunk.split("\n");
+        const parsedLines = lines
+          .map((line) => line.replace(/^data: /, "").trim())
+          .filter((line) => line !== "" && line !== "[DONE]")
+          .map((line) => JSON.parse(line));
 
-      for (const parsedLine of parsedLines) {
-        const { choices } = parsedLine;
-        const { delta } = choices[0];
-        const { content } = delta;
-        if (content) {
-          textingContent += content;
-          setChatLog((prevChatLog) => {
-            const lastItemIndex = prevChatLog.length - 1;
-            const lastItem = prevChatLog[lastItemIndex];
+        for (const parsedLine of parsedLines) {
+          const { choices } = parsedLine;
+          const { delta } = choices[0];
+          const { content } = delta;
+          if (content) {
+            textingContent += content;
+            setChatLog((prevChatLog) => {
+              const lastItemIndex = prevChatLog.length - 1;
+              const lastItem = prevChatLog[lastItemIndex];
 
-            const modifiedLastItem = {
-              ...lastItem,
-              content: lastItem.content + content,
-            };
-            const newChatLog = [
-              ...prevChatLog.slice(0, lastItemIndex),
-              modifiedLastItem,
-            ];
-            return newChatLog;
-          });
+              const modifiedLastItem = {
+                ...lastItem,
+                content: lastItem.content + content,
+              };
+              const newChatLog = [
+                ...prevChatLog.slice(0, lastItemIndex),
+                modifiedLastItem,
+              ];
+              return newChatLog;
+            });
+          }
         }
       }
-    }
-    textingContent.replace(/\n/g, "<br>");
-    setOnType(false);
 
-    if (input != "" && textingContent != "") {
-      fetch(`http://localhost:8080/chats/me`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
-        body: JSON.stringify({
-          question: input,
-          answer: textingContent,
-        }),
-      });
+      textingContent.replace(/\n/g, "<br>");
+      setOnType(false);
+
+      if (input != "" && textingContent != "") {
+        fetch(`http://localhost:8080/chats/me`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+          },
+          body: JSON.stringify({
+            question: input,
+            answer: textingContent,
+          }),
+        });
+      }
     }
   }
 
@@ -216,14 +222,14 @@ function ChatBox() {
       });
   }, []);
 
-  const handleClick = async (input: String) => {
+  const handleClick = async (input: string) => {
     if (onType == false) {
       await processMessageToChatGPT(input);
     }
   };
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
   }, [chatLog]);
 
   return (
@@ -267,7 +273,6 @@ function ChatBox() {
         <div className="chat-input-holder">
           <form onSubmit={(e) => handleSubmit(e, input)}>
             <input
-              rows="1"
               value={input}
               onChange={(e) => setInput(e.currentTarget.value)}
               className="chat-input-textarea"
@@ -290,7 +295,19 @@ function ChatBox() {
   );
 }
 
-const ChatMessage = ({ message, imageUrl }) => {
+interface ChatMessageProps {
+  message: message;
+  imageUrl: string;
+}
+
+interface message {
+  content: string;
+  role: string;
+  fake: boolean;
+  createdAt: string;
+}
+
+const ChatMessage = ({ message, imageUrl }: ChatMessageProps) => {
   const content = message.content.replace(/\n/g, "<br>");
   return (
     <div

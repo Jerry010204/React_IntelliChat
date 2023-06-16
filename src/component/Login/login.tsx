@@ -15,11 +15,18 @@ export default function LoginButton() {
   ): void {
     navigate("/home");
 
-    const username: string = response.profileObj.email;
-    const name: string = response.profileObj.name;
-    const email: string = response.profileObj.email;
-    const imageUrl: string = response.profileObj.imageUrl;
-    const password: string = response.profileObj.googleId;
+    let username: string;
+    let name: string;
+    let email: string;
+    let imageUrl: string;
+    let password: string;
+    if ("profileObj" in response) {
+      username = response.profileObj.email;
+      name = response.profileObj.name;
+      email = response.profileObj.email;
+      imageUrl = response.profileObj.imageUrl;
+      password = response.profileObj.googleId;
+    }
     const authenticate = async () => {
       try {
         const response: Promise<Response> = fetch(

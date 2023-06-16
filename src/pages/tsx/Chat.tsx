@@ -16,7 +16,7 @@ export default function Chat() {
         overflow: "auto",
       }}
     >
-      <ChatsBar style={{ position: "relative", zIndex: "0" }} />
+      <ChatsBar />
       <img
         src={GPTicon}
         alt=""
@@ -40,7 +40,7 @@ export default function Chat() {
       >
         ChatGPT-3.5
       </p>
-      <ChatBox style={{ poistion: "relative", zIndex: "-1" }} />
+      <ChatBox />
       <NavigationBarChat />
     </div>
   );

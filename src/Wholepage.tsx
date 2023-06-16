@@ -6,7 +6,6 @@ import Post from "./pages/tsx/Post";
 import Login from "./pages/tsx/Login";
 
 import { Route, Routes } from "react-router-dom";
-import RealChat from "./pages/RealChat";
 
 function WholePage() {
   return (
