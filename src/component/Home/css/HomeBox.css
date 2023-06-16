@@ -1,0 +1,223 @@
+.HomeBox{
+    background: white;
+    position: relative;
+    height: 140px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px 2px rgba(13, 8, 77, 0.1);
+}
+
+.title1{
+    margin-bottom: 5px;
+    margin-top: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-weight: 600;
+    word-break: break-word;
+    font-size: 19px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.answer{
+    font-size: 90%;
+    margin-left: 4px;
+    margin-right: 4px;
+    word-break: break-word;
+    padding-bottom: 3px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.boxInfo {
+    /* background-color: aqua; */
+    position: absolute;
+    width: 100%;
+    bottom: 5px;
+}
+.like{
+    display: inline-block;
+    font-size: 70%;
+    margin-right: 15px;
+    color: #8590A6;
+}
+
+.readIcon {
+    display: inline-block;
+    font-size: 70%;
+    color: #8590A6;
+    margin-right: 1px;
+}
+
+.likeIcon{
+    display: inline-block;
+    font-size: 70%;
+    color: #8590A6;
+    margin-right: 2px;
+    margin-left: 5px;
+}
+
+.read{
+    display: inline-block;
+    font-size: 70%;
+    color: #8590A6;
+    margin-right: 130px;
+}
+
+.icon{
+    display: inline-block;
+    border-radius: 100px;
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+ 
+}
+
+.usernameInHomeBox {
+    display: inline-block;
+    position: absolute;
+    bottom: 2px;
+    font-size: 70%;
+    color: #8590a6;
+    width: 70px;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+  }
+
+.dateInBox{
+    display: inline-block;
+    position: absolute;
+    bottom: 2px;
+    font-size: 70%;
+    color: #8590A6;
+    right: 20px;
+}
+
+.RegisterTitle{
+    margin-top: 20px;
+    color:rgb(54, 51, 153);
+    text-align: center;
+    font-weight:600;
+}
+
+.submitRegisterButton{
+    width: 340px;
+    height: 40px;
+    padding: 0px;
+    border: none;
+    background-color: rgb(40, 37, 232);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.submitLoginButton{
+    width: 340px;
+    height: 40px;
+    padding: 0px;
+    border: none;
+    background-color: rgb(40, 37, 232);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 28px;
+    margin-bottom: 30px;
+}
+
+.switchButton1{
+    width:110px;
+    height: 40px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    color: black;
+    font-weight: bold;
+}
+
+.switchButton2{
+    width:110px;
+    height: 40px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+#btn {
+    Left: 0;
+    top: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    /* background: #e67e22; */
+    border-radius: 30px;
+    transition: .5s;
+}
+.registInput{
+    height: 40px;
+    width: 340px;
+    background-color: rgb(248, 247, 247);
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #c1c1c1;
+}
+
+.registerLabel{
+    display: block;
+    margin-bottom: -7px;
+    margin-top: 0px;
+    margin-left: 18px;
+}
+
+.errorMessage{
+    margin-top: -8px;
+    display: block;
+    font-size: 12px;
+    color: red;
+    opacity: 0;
+}
+
+.LoginInput{
+    height: 40px;
+    width: 340px;
+    background-color: rgb(248, 247, 247);
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #c1c1c1;
+}
+
+.LoginPage{
+    background: white;
+    position: fixed;
+    width: 100%;
+    height: 66%;
+    bottom: 0;
+    border-radius: 80px 80px 0px 0px;
+}
+
+.upperBack{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgb(45,45,146);
+    background: linear-gradient(70deg, rgba(45,45,146,1) 15%, rgba(31,27,86,1) 49%, rgba(45,45,146,1) 80%);
+}
+
+

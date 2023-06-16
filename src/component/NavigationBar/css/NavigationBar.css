@@ -1,0 +1,40 @@
+.button {
+    background: rgb(253, 253, 248);
+    position: fixed;
+    bottom: -0.1%;
+    height: 40px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.unclick {
+    color: grey;
+    font-size: 22px;
+}
+
+.click{
+    color: rgb(16, 5, 110);
+    position: relative;
+    bottom: 5%;
+    font-size: 25px;
+}
+
+.unclickIcon{
+    bottom: 0.8%;
+    left: 33%;
+    position: fixed;
+    width: 26px;
+    height: 26px;
+}
+
+.post.show{
+    color: green;
+    transition-duration: 5s;
+}
+
+.post{
+    color: brown;
+}

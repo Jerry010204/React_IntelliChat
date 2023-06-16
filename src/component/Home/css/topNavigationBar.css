@@ -1,0 +1,37 @@
+.topbar{
+    background-color: #efeff4;
+    height: 45px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.userIcon{
+    margin-top: 9px;
+    margin-left: 34%;
+    width: 30px;
+}
+
+.appName{
+    display: inline;
+    position: absolute;
+    font-weight: 700;
+    font-size: 120%;
+    left: 45%;
+    padding-top: 8px;
+}
+
+.ring{
+    position: absolute;
+    left: 1%;
+    top: 20%;
+    font-size: 170%;
+
+}
+
+.logout{
+    position: absolute;
+    right: 1%;
+    top: 20%;
+    font-size: 170%;
+}

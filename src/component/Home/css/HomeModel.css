@@ -1,0 +1,30 @@
+.secondTopBar{
+    position: absolute;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.model-question{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left:12px;
+    margin-right:12px;
+    font-weight: 600;
+    word-break: break-word;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+
+.model-answer{
+    margin-top: 10px;
+    margin-left:12px;
+    margin-right:12px;
+    word-break: break-word;
+    padding-bottom: 3px;
+}
+
+.horizontalBar{
+    color: #9090a0
+}
+

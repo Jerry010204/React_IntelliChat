@@ -1,0 +1,13 @@
+.postButton{
+    position: absolute;
+    right: 1%;
+    top: 10%;
+    border: none;
+    color: #fff;
+    background-color: #1E90FF;
+    font-size: 13px;
+    border-radius: 5px;
+    width: 85px;
+    height: 30px;
+    box-shadow: 1 1px 10px rgba(0,0,0,0.1);
+}
